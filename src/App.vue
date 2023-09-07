@@ -6,9 +6,7 @@ import Navbar from './components/Navbar.vue'
 
 <template>
   <Navbar />
-  <div class="bg">
-    <img src="@/assets/bg.jpg" />
-  </div>
+  <RouterView />
 </template>
 
 <style lang="scss">
@@ -19,31 +17,5 @@ import Navbar from './components/Navbar.vue'
   list-style: none;
   text-decoration: none;
   font-size: 14px;
-}
-.app{
-  width: 100vw;
-  .header{
-    height: 40px;
-    background-color: #0f86be;
-    .content{
-      width: 1280px;
-      margin: 0 auto;
-      color: white;
-      display: flex;
-      justify-content: flex-start;
-      ul{
-        display: flex;
-        align-items: center;
-        height: 40px;
-        li{
-          cursor: pointer;
-          margin: 0 5px;
-          &:hover{
-            color: blue;
-          }
-        }
-      }
-    }
-  }
 }
 </style>

@@ -10,55 +10,22 @@
           class="el-menu-demo"
           mode="horizontal"
           @select="handleSelect"
+          router
         >
-        <el-sub-menu index="1">
-            <template #title>产品</template>
-            <el-menu-item index="1-1">ESS-SP</el-menu-item>
-            <el-menu-item index="1-2">工商业储能系统</el-menu-item>
-            <el-menu-item index="1-3">锂电池</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="2">
-            <template #title>解决方案</template>
-            <el-menu-item index="1-1">ESS-SP</el-menu-item>
-            <el-menu-item index="1-2">工商业储能系统</el-menu-item>
-            <el-menu-item index="1-3">锂电池</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="3">
-            <template #title>项目案例</template>
-            <el-menu-item index="1-1">ESS-SP</el-menu-item>
-            <el-menu-item index="1-2">工商业储能系统</el-menu-item>
-            <el-menu-item index="1-3">锂电池</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="4">
-            <template #title>关于我们</template>
-            <el-menu-item index="1-1">ESS-SP</el-menu-item>
-            <el-menu-item index="1-2">工商业储能系统</el-menu-item>
-            <el-menu-item index="1-3">锂电池</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="5">
-            <template #title>服务中心</template>
-            <el-menu-item index="1-1">ESS-SP</el-menu-item>
-            <el-menu-item index="1-2">工商业储能系统</el-menu-item>
-            <el-menu-item index="1-3">锂电池</el-menu-item>
-          </el-sub-menu>
+        
+        <el-menu-item index="/residential">户储系统</el-menu-item>
+        <el-menu-item index="/commercial">商储系统</el-menu-item>
+        <el-menu-item index="solution">解决方案</el-menu-item>
+        <el-menu-item index="support">服务支持</el-menu-item>
+        <el-menu-item index="about">关于我们</el-menu-item>
         </el-menu>
       </div>
       <div class="search">
         <el-col :span="8">
-          <el-dropdown>
-            <span class="el-dropdown-link">
-              切换语言<el-icon class="el-icon--right"></el-icon>
-            </span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item :icon="Plus">CN</el-dropdown-item>
-                <el-dropdown-item :icon="CirclePlusFilled">UN</el-dropdown-item>
-                <el-dropdown-item :icon="CirclePlus">DE</el-dropdown-item>
-                <el-dropdown-item :icon="Check">IT</el-dropdown-item>
-                <el-dropdown-item :icon="CircleCheck">US</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+          <div>
+            <el-button mb-2 @click="toggle">Switch Language</el-button>
+            <br />
+          </div>
         </el-col>
       </div>
     </div>
@@ -66,22 +33,24 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
-const activeIndex = ref('1')
+const activeIndex = ref('/')
 const activeIndex2 = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 
-import {
-  ArrowDown,
-  Check,
-  CircleCheck,
-  CirclePlus,
-  CirclePlusFilled,
-  Plus,
-} from '@element-plus/icons-vue'
+
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import en from 'element-plus/dist/locale/en.mjs'
+
+const language = ref('zh-cn')
+const locale = computed(() => (language.value === 'zh-cn' ? zhCn : en))
+
+const toggle = () => {
+  language.value = language.value === 'zh-cn' ? 'en' : 'zh-cn'
+}
 </script>
 
 <style lang="scss">
